@@ -14,7 +14,6 @@ navLinks.forEach(link => {
     });
 });
 
-
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
@@ -23,7 +22,6 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('scrolled');
     }
 });
-
 
 const sections = document.querySelectorAll('section');
 window.addEventListener('scroll', () => {
@@ -44,7 +42,6 @@ window.addEventListener('scroll', () => {
     });
 });
 
-
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -58,7 +55,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
 
@@ -71,7 +67,6 @@ document.addEventListener('mousemove', (e) => {
         cursorFollower.style.top = e.clientY + 'px';
     }, 100);
 });
-
 
 const hoverElements = document.querySelectorAll('a, button, .project-card, .skill-item');
 hoverElements.forEach(el => {
@@ -87,7 +82,6 @@ hoverElements.forEach(el => {
         cursorFollower.style.borderColor = 'var(--primary-color)';
     });
 });
-
 
 const scrollBtn = document.createElement('div');
 scrollBtn.classList.add('scroll-top');
@@ -114,48 +108,40 @@ if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
-        
-        
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
         
         try {
+            // Simulate API call (We will connect this to Django later)
+            await new Promise(resolve => setTimeout(resolve, 1500));
             
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            
-          
             const successMsg = document.createElement('div');
             successMsg.classList.add('form-success');
             successMsg.textContent = 'Message sent successfully!';
             document.body.appendChild(successMsg);
             
-           
             setTimeout(() => {
                 successMsg.remove();
             }, 3000);
             
-          
             contactForm.reset();
             
         } catch (error) {
             console.error('Error:', error);
             alert('Something went wrong. Please try again.');
         } finally {
-            
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
         }
     });
 }
 
-
-const heroTitle = document.querySelector('.hero-title span');
-if (heroTitle) {
-    const words = ['Developer', 'Designer', 'Creator', 'Problem Solver'];
+// Typing Effect for Hero Role
+const typingText = document.querySelector('.typing-text');
+if (typingText) {
+    const words = ['Full-Stack Developer', 'React Developer', 'Django Developer', 'Problem Solver'];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -164,10 +150,10 @@ if (heroTitle) {
         const currentWord = words[wordIndex];
         
         if (isDeleting) {
-            heroTitle.textContent = currentWord.substring(0, charIndex - 1);
+            typingText.textContent = currentWord.substring(0, charIndex - 1);
             charIndex--;
         } else {
-            heroTitle.textContent = currentWord.substring(0, charIndex + 1);
+            typingText.textContent = currentWord.substring(0, charIndex + 1);
             charIndex++;
         }
         
@@ -186,7 +172,6 @@ if (heroTitle) {
     typeEffect();
 }
 
-
 const skillBars = document.querySelectorAll('.skill-progress-bar');
 const observerOptions = {
     threshold: 0.5,
@@ -204,7 +189,6 @@ const observer = new IntersectionObserver((entries) => {
 skillBars.forEach(bar => {
     observer.observe(bar);
 });
-
 
 const projectCards = document.querySelectorAll('.project-card');
 projectCards.forEach(card => {
@@ -227,7 +211,6 @@ projectCards.forEach(card => {
     });
 });
 
-
 window.addEventListener('load', () => {
     const preloader = document.querySelector('.preloader');
     if (preloader) {
@@ -237,7 +220,6 @@ window.addEventListener('load', () => {
         }, 500);
     }
 });
-
 
 const darkModeToggle = document.createElement('div');
 darkModeToggle.classList.add('dark-mode-toggle');
@@ -255,7 +237,6 @@ darkModeToggle.addEventListener('click', () => {
         icon.classList.add('fa-moon');
     }
 });
-
 
 const darkModeStyles = document.createElement('style');
 darkModeStyles.textContent = `
@@ -302,7 +283,6 @@ darkModeStyles.textContent = `
 `;
 document.head.appendChild(darkModeStyles);
 
-
 window.addEventListener('scroll', () => {
     const hero = document.querySelector('.hero');
     const scrollPosition = window.scrollY;
@@ -311,7 +291,6 @@ window.addEventListener('scroll', () => {
         hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
     }
 });
-
 
 function animateValue(element, start, end, duration) {
     let startTimestamp = null;
@@ -326,14 +305,13 @@ function animateValue(element, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-
 const aboutSection = document.querySelector('#about');
 const expNumber = document.querySelector('.exp-number');
 if (aboutSection && expNumber) {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                animateValue(expNumber, 0, 5, 2000);
+                animateValue(expNumber, 0, 2, 2000);
                 observer.unobserve(entry.target);
             }
         });
