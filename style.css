@@ -619,6 +619,8 @@ body {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:hover {
@@ -698,6 +700,9 @@ body {
 
 .project-info {
     padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .project-info h3 {
@@ -710,12 +715,14 @@ body {
     color: var(--text-light);
     margin-bottom: 15px;
     font-size: 14px;
+    flex-grow: 1;
 }
 
 .project-tech {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 .project-tech span {
@@ -1073,4 +1080,31 @@ section {
 @keyframes slideIn {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
+}
+
+/* NEW: Project Live Link Styling */
+.project-live-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: var(--transition);
+    margin-top: auto; /* Pushes link to the bottom of the card */
+    padding-top: 15px;
+    border-top: 1px solid var(--light-color);
+}
+
+.project-live-link i {
+    transition: transform 0.3s ease;
+}
+
+.project-live-link:hover {
+    color: var(--dark-color);
+}
+
+.project-live-link:hover i {
+    transform: translateX(5px); /* Arrow moves right on hover */
 }
